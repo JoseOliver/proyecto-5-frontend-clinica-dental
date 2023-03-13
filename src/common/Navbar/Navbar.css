@@ -1,0 +1,8 @@
+.navbar{
+    height: 15vh;
+    width: 100vw;
+    background-color: darkgrey;
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+}
