@@ -15,7 +15,7 @@ export const App = () => {
       <Routes>
         <Route path='/' element={<Home></Home>}></Route>
         <Route path='/auth/login' element={<Login></Login>}></Route>
-        <Route path='/auth/about' element={<Register></Register>}></Route>
+        <Route path='/auth/register' element={<Register></Register>}></Route>
       </Routes>
     </div>
   </>

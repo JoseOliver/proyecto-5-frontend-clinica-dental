@@ -7,7 +7,7 @@ export const Navbar = () => {
     <div className='navbar'>
         <Nav ruta={'Home'} destino={'/'}></Nav>
         <Nav ruta={'Login'} destino={'/auth/login'}></Nav>
-        <Nav ruta={'Register'} destino={'/auth/Register'}></Nav>
+        <Nav ruta={'Register'} destino={'/auth/register'}></Nav>
     </div>
   )
 }
