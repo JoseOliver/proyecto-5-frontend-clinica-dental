@@ -1,5 +1,13 @@
 .input{
-    margin: 1em;
-    border: 0.2em solid darkblue;
-    border-radius: 1em;
+    display:flex;
+    justify-content: start;
+    align-items: start;
+}
+.message{
+    height:30px;
+    width:40vw;
+    display:flex;
+    justify-content: start;
+    align-items: center;
+    margin:0 10px !important;
 }

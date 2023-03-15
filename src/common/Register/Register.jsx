@@ -1,6 +1,8 @@
 import React, {useState} from 'react';
+import { register } from '../../services/apiCalls';
 import { DropdownBtn } from '../DropdownBtn/DropdownBtn';
 import { InputText } from '../InputText/InputText';
+import './Register.css'
 
 export const Register = () => {
 
@@ -12,67 +14,81 @@ export const Register = () => {
     direccion:'',
     email: '',
     password: ''
-});
+  });
 
-const [credencialesError, setCredencialesError] = useState({
-    nameError: '',
-    apellidoError: '',
-    direccionError: '',
-    emailError: '',
-    passwordError: ''
-});
+  const [registroError, setRegistroError] = useState({
+      nameError: '',
+      apellidoError: '',
+      direccionError: '',
+      emailError: '',
+      passwordError: ''
+  });
 
-const [rol, setRol] = useState('paciente');
+  const [rol, setRol] = useState('paciente');
+  const [mensaje,setMensaje]= useState('');
+
+  const registerFunc=()=>{
+    if( registro.password !== '' && registroError.passwordError===''){
+      register(registro)
+      .then((body)=>setMensaje(body))
+      .catch((error)=>setMensaje(error));
+    }
+  }
 
   return (
-    <div className='register'>
-      Register
-      {JSON.stringify(registro)}
-      <InputText
-          type="text"
-          placeholder="Nombre"
-          name="name" // linea de bindeo con el hook
-          setFunc={setRegistro}
-      ></InputText>
-
-      <InputText
-          type="text"
-          name="apellido" // linea de bindeo con el hook
-          placeholder="Apellido"
-          setFunc={setRegistro}
-      ></InputText>
-      <DropdownBtn 
-        setFunc={setRol} 
-        options={options} 
-        title={'¿Eres paciente o doctor?'}>
-      </DropdownBtn>
-      {
-        rol==='paciente' && (
-          <div>Cosas de paciente</div>
-        )
-      }
-      {
-        rol==='medico' && (
-          <div>Cosas de medico</div>
-        )
-      }
-
-      <InputText
-          type="email"
-          name="email" // linea de bindeo con el hook
-          placeholder="Email"
-          setFunc={setRegistro}
-      ></InputText>
-      <div>
-        {credencialesError.emailError}
-      </div>
-
-      <InputText
-          type="password"
-          name="password"
-          placeholder="Pass"
-          setFunc={setRegistro}
-      ></InputText>
-    </div>
+    <>
+      {mensaje === '' ?(
+        <div className='register'>
+          Register
+          <InputText
+              type="text"
+              placeholder="Nombre"
+              name="name" // linea de bindeo con el hook
+              setFunc={setRegistro}
+              validateFunc={setRegistroError}
+          ></InputText>
+    
+          <InputText
+              type="text"
+              name="apellido" // linea de bindeo con el hook
+              placeholder="Apellido"
+              setFunc={setRegistro}
+              validateFunc={setRegistroError}
+          ></InputText>
+          <DropdownBtn 
+            setFunc={setRol} 
+            options={options} 
+            title={'¿Paciente o doctor?'}>
+          </DropdownBtn>
+          {
+            rol==='paciente' && (
+              <div>Cosas de paciente</div>
+            )
+          }
+          {
+            rol==='medico' && (
+              <div>Cosas de medico</div>
+            )
+          }
+          <InputText
+              type="email"
+              name="email" // linea de bindeo con el hook
+              placeholder="Email"
+              setFunc={setRegistro}
+              validateFunc={setRegistroError}
+          ></InputText>
+          <InputText
+              type="password"
+              name="password"
+              placeholder="Pass"
+              setFunc={setRegistro}
+              validateFunc={setRegistroError}
+          ></InputText>
+          <button className='regButton' onClick={()=>{registerFunc()}}>Register</button>
+        </div>
+      ):(
+        <div>{mensaje}</div>
+      )}
+    </>
   )
 }

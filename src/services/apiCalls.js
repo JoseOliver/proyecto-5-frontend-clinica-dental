@@ -5,7 +5,9 @@ export const bringUsers= async () => {
 }
 export const logIn= async (body) => {
     // return await axios.get(root + '/user/auth/login', body); // esta linea devolverá un token
-    return {
-        name:"Jose"
-    };
+    return 'Bienvenido '+body.name;
+}
+export const register= async (body) => {
+    // return await axios.get(root + '/user/auth/register', body); // esta linea devolverá un token
+    return body.name+' Registrado';
 }

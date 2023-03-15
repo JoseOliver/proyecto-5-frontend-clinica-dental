@@ -10,7 +10,7 @@ export const DropdownBtn = ({setFunc, options, title}) => {
         <Container fluid className='dropdown'>
             <Row>
                 <Col>
-                    <DropdownButton id="dropdown-basic-button" title={title}>
+                    <DropdownButton variant='primary' id="dropdown-basic-button" title={title}>
                         {options.map((option)=>                
                             <Dropdown.Item key={option.id} onClick={()=>{
                                 setFunc(option.value);

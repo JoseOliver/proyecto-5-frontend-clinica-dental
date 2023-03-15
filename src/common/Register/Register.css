@@ -1,0 +1,18 @@
+.register{
+    min-width:380px;
+}
+.regButton{
+    width:5em;
+    height:2em;
+    background-color: brown;
+    transition: 0.5s;
+    border-radius: 5px;
+}
+.regButton:hover{
+    width:5em;
+    height:2em;
+    transform: scale(1.1);
+    background-color: darkred;
+    transition: 0.5s;
+    border-radius: 5px;
+}

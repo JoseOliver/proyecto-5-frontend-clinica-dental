@@ -1,5 +1,5 @@
 export const inputValidate= (elem,data) => {
-    switch(elem.target.name){
+    switch(elem.name){
         case "email":
         break;
         case "password":
@@ -10,6 +10,6 @@ export const inputValidate= (elem,data) => {
             }
         break;
         default:
-            return('field not recongnized');
+            return 'field not recongnized';
     }
 }
