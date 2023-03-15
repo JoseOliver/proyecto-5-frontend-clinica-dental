@@ -4,13 +4,12 @@ import { InputText } from '../InputText/InputText';
 
 export const Register = () => {
 
-  let options= [{id:1,name:'Si', value:true},{id:2,name:'No', value:false}];
+  let options= [{id:1,name:'Paciente', value:'paciente'},{id:2,name:'Médico', value:'medico'}];
 
-  const [credenciales, setCredenciales] = useState({
+  const [registro, setRegistro] = useState({
     name: '',
     apellido:'',
     direccion:'',
-
     email: '',
     password: ''
 });
@@ -23,51 +22,38 @@ const [credencialesError, setCredencialesError] = useState({
     passwordError: ''
 });
 
-const [condicional, setCondicional] = useState(false);
-
-const inputHandler = (elem)=> {
-  setCredenciales((prevState)=>({
-    ...prevState,
-    [elem.target.name]:elem.target.value
-  }))
-}
-
-const dropdownHandler=(option)=>{
-  setCondicional(option);
-}
+const [rol, setRol] = useState('paciente');
 
   return (
     <div className='register'>
       Register
+      {JSON.stringify(registro)}
       <InputText
           type="text"
-          name="name" // linea de bindeo con el hook
           placeholder="Nombre"
-          changeFunc={(elem)=>inputHandler(elem)}
-          blurFunc={(elem)=>inputValidate(elem)}
+          name="name" // linea de bindeo con el hook
+          setFunc={setRegistro}
       ></InputText>
-      <div>
-        {credencialesError.nameError}
-      </div>
 
       <InputText
           type="text"
           name="apellido" // linea de bindeo con el hook
           placeholder="Apellido"
-          changeFunc={(elem)=>inputHandler(elem)}
-          blurFunc={(elem)=>inputValidate(elem)}
+          setFunc={setRegistro}
       ></InputText>
-      <div>
-        {credencialesError.apellidoError}
-      </div>
       <DropdownBtn 
-        changeFunc={(option)=> dropdownHandler(option)} 
+        setFunc={setRol} 
         options={options} 
-        title={'titulo del drop'}>
+        title={'¿Eres paciente o doctor?'}>
       </DropdownBtn>
       {
-        condicional && (
-          <div>Funciona!</div>
+        rol==='paciente' && (
+          <div>Cosas de paciente</div>
+        )
+      }
+      {
+        rol==='medico' && (
+          <div>Cosas de medico</div>
         )
       }
 
@@ -75,8 +61,7 @@ const dropdownHandler=(option)=>{
           type="email"
           name="email" // linea de bindeo con el hook
           placeholder="Email"
-          changeFunc={(elem)=>inputHandler(elem)}
-          blurFunc={(elem)=>inputValidate(elem)}
+          setFunc={setRegistro}
       ></InputText>
       <div>
         {credencialesError.emailError}
@@ -86,14 +71,8 @@ const dropdownHandler=(option)=>{
           type="password"
           name="password"
           placeholder="Pass"
-          changeFunc={(elem)=>inputHandler(elem)}
-          blurFunc={(elem)=>inputValidate(elem)}
+          setFunc={setRegistro}
       ></InputText>
-      <div>
-          {credencialesError.passwordError}
-      </div>
-      <InputText>
-      </InputText>
     </div>
   )
 }

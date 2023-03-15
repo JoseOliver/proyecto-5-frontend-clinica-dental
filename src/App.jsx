@@ -14,7 +14,6 @@ export const App = () => {
     <Container fluid className="App">
       <Row>
         <Col>
-          <h1>App</h1>
           <Navbar></Navbar>
           <Routes>
             <Route path='/' element={<Home></Home>}></Route>

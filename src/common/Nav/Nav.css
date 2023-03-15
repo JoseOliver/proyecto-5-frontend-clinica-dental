@@ -13,7 +13,7 @@
     justify-content: center;
     align-items: center;
     
-    margin: 1em;
+    margin: 1em !important;
     transition: 0.3s;
 }
 .nav:hover{
