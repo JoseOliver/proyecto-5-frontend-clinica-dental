@@ -50,7 +50,7 @@ export const Register = () => {
     
           <InputText
               type="text"
-              name="apellido" // linea de bindeo con el hook
+              name="apellido1" // linea de bindeo con el hook
               placeholder="Apellido"
               setFunc={setRegistro}
               validateFunc={setRegistroError}
