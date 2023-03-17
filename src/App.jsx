@@ -4,7 +4,7 @@ import './App.css'
 import { Home } from './pages/Home';
 import { Register } from './common/Register/Register';
 import { Login } from './common/Login/Login';
-import { Navbar } from './common/NavBar/Navbar';
+import { NavBar } from './common/NavBar/Navbar';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
@@ -14,7 +14,7 @@ export const App = () => {
     <Container fluid className="App">
       <Row>
         <Col>
-          <Navbar></Navbar>
+          <NavBar></NavBar>
           <Routes>
             <Route path='/' element={<Home></Home>}></Route>
             <Route path='/auth/login' element={<Login></Login>}></Route>

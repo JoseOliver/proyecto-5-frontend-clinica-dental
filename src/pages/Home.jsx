@@ -1,5 +1,4 @@
 import React , { useState, useEffect } from 'react'
-import { Navbar } from '../common/NavBar/Navbar'
 import { bringUsers } from '../services/apiCalls';
 
 export const Home = () => {
