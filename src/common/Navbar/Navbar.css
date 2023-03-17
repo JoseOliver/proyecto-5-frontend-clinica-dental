@@ -1,12 +1,17 @@
 .navbar{
-    height: 15vh;
-    width: 100vw;
-    background-color: darkgrey;
+}
+.nav-tabs{
+    width:100vw;
 }
 .log-panel{
     width:100px;
     display:flex;
-    flex-direction: column;
-    justify-content: end;
     align-items: center;
+    float:right;
+    margin-right:10px !important;
+}
+.log-name{
+    height: 40px;
+    padding-right: 7px !important;
+    padding-top: 3px !important;
 }

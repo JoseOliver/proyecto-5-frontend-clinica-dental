@@ -1,11 +1,11 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import './Nav.css';
+import './NavElem.css';
 
-export const Nav = ({ruta, destino}) => {
+export const NavElem = ({ruta, destino}) => {
     const navigate = useNavigate();
     return (
-        <div className='nav' onClick={()=> navigate(destino)}>
+        <div className='nav-elem' onClick={()=> navigate(destino)}>
             {ruta}
         </div>
     )

@@ -1,22 +1,16 @@
-.nav{
-    height: 2em;
-    width: 7em;
-    
+.nav-elem{
     background-color: grey;
-    
+    color:beige;
     border-radius: 1em;
     border: 0.1em solid darkblue;
-    
     cursor: pointer;
-    
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    
-    margin: 1em !important;
     transition: 0.3s;
+    padding: 5px !important;
+    width: 100px;
+    text-align: center;
 }
-.nav:hover{
+.nav-elem:hover{
     background-color: beige;
+    color:grey;
     transition: 0.3s;
 }
