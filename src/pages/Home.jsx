@@ -6,13 +6,13 @@ export const Home = () => {
     const [users, setUsers]= useState([]);
 
     useEffect(()=>{
-        if(users.length===0){
-            bringUsers()
-            .then((info)=>{
-                setUsers(info.data.users);
-            })
-            .catch((error)=>{console.log(error)});
-        }
+        // if(users.length===0){
+        //     bringUsers()
+        //     .then((info)=>{
+        //         setUsers(info.data.users);
+        //     })
+        //     .catch((error)=>{console.log(error)});
+        // }
     },[users]);
     return (
         <div>

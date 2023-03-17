@@ -1,4 +1,12 @@
 .navbar{
     height: 15vh;
+    width: 100vw;
     background-color: darkgrey;
+}
+.log-panel{
+    width:100px;
+    display:flex;
+    flex-direction: column;
+    justify-content: end;
+    align-items: center;
 }

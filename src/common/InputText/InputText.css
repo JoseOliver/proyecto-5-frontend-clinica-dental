@@ -3,6 +3,9 @@
     justify-content: start;
     align-items: start;
 }
+.input-component{
+    margin:10px !important;
+}
 .message{
     height:30px;
     width:40vw;

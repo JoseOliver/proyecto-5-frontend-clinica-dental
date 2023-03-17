@@ -39,7 +39,7 @@ export const Register = () => {
     <>
       {mensaje === '' ?(
         <div className='register'>
-          Register
+          <p>Register</p>
           <InputText
               type="text"
               placeholder="Nombre"

@@ -7,18 +7,28 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import './Login.css';
 
+import { userData, login } from './userSlice';
+import { useDispatch, useSelector } from 'react-redux';
+
 export const Login = () => {
+
+//    const userReduxCredenciales = useSelector(userData);
+    const dispatch= useDispatch();
+    const select= useSelector(userData);
 
     const navigate= useNavigate();
     
-    const [message, setMessage] = useState("");
+    const [welcome, setWelcome] = useState("");
     const [credenciales, setCredenciales] = useState({
+        name:'',
         email:"",
-        password:""
+        password:"",
+        token:""
     });
     const [credencialesError, setCredencialesError] = useState({
         emailError:"",
-        passwordError:""
+        passwordError:"",
+        totalError:''
     });
     // funciones useEffect de ciclo de vida del componente
     // useEffect(()=>{},[])  // funcion que se ejecuta cuando monta el componente
@@ -26,38 +36,55 @@ export const Login = () => {
     // useEffect(()=>{})  // funcion que se ejecuta cuando actualiza el componente
 
     // useEffect(()=>{},[credenciales])   // funcion que se ejecuta solo cuando se actualiza el hook credenciales
-    const set= (e) => {
-        // let data={};
-        // for(let input of inputs){
-        //     data[input]=document.querySelector('.'+input).value;
-            
-        //     console.log(input +" "+ data[input])
-        // }
-        // console.log(data);
-
-
-        setCredenciales((prevState)=>({
-            ...prevState, 
-            [e.target.name]: e.target.value
-        }))
-        console.log(credenciales);
-    }
-
     
+    // useEffect(()=>{
+    //     if(select.credenciales.token){
+    //         navigate('/');
+    //     }
+    // },[])
+
+    useEffect(()=>{
+        if(
+            credenciales.email!=='' && credenciales.password!== '' &&
+            credencialesError.emailError === '' && credencialesError.passwordError==='' &&
+            credencialesError.totalError !==''
+        ){
+            setCredencialesError(prevState => ({
+                ...prevState,
+                totalError:""
+            }));
+        }
+    },[credencialesError])
+
     const loginFunc= async()=>{
-        logIn(credenciales)
-        .then((data)=>{
-        //             //falta guardar data en el hook de data y navegar a user
-        setMessage('Bienvenido de nuevo, '+ credenciales.email)
-        })
-        .catch((error)=>{console.log(error)});
+        if(
+            credenciales.email!=='' && credenciales.password!== '' &&
+            credencialesError.emailError==='' && credencialesError.passwordError===''
+            && credencialesError.totalError===''
+        ){
+            logIn(credenciales)
+            .then((data)=>{
+            //             //falta guardar data en el hook de data y navegar a user
+                dispatch( login({credenciales:data}));
+                setWelcome('Bienvenido de nuevo, '+ data.name);
+            //navigate(to='/')
+            })
+            .catch((error)=>{console.log(error)});
+        }else{
+            setCredencialesError(prevState => ({
+                ...prevState,
+                totalError:"No puedes hacer login sin rellenar correctamente los datos"
+            }));
+        }
     }
 
     return (
         <Container fluid className='login'>
             <Row>
                 <Col>
-                    {message === ""?(
+                    {
+                    !select.credenciales?.token ?
+                    (
                         <div>
                             <p>Login</p>
                             <InputText
@@ -65,17 +92,22 @@ export const Login = () => {
                                 name="email" // linea de bindeo con el hook
                                 placeholder="Email"
                                 setFunc= {setCredenciales}
+                                validateFunc= {setCredencialesError}
                             ></InputText>
                             <InputText
                                 type="password"
                                 name="password"
                                 placeholder="Pass"
                                 setFunc={setCredenciales}
+                                validateFunc= {setCredencialesError}
                             ></InputText>
                             <button className='logButton' onClick={()=>{loginFunc()}}>Login</button>
+                            {credencialesError.totalError}
                         </div>
                     ):(
-                        <div>{message}</div>
+                        <>
+                            <div>{welcome}</div>
+                        </>
                     )}
                 </Col>
             </Row>

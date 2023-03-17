@@ -28,8 +28,7 @@ export const InputText = ({type,placeholder,name, setFunc, validateFunc}) => {
       (prevState)=>({
         ...prevState, 
         [elem.target.name+'Error']: error
-    })
-    )
+    }))
   }
 
   const [data,setData]=useState({value:"", error:""});
@@ -43,6 +42,7 @@ export const InputText = ({type,placeholder,name, setFunc, validateFunc}) => {
       <Row>
         <Col>
           <input
+          className='input-component'
           type={type} 
           placeholder={placeholder}
           name={name}
