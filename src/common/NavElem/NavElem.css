@@ -9,6 +9,9 @@
     width: 100px;
     text-align: center;
 }
+.app-title{
+    color: grey;
+}
 .nav-elem:hover{
     background-color: beige;
     color:grey;

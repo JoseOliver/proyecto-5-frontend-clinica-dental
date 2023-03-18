@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { Col, Row } from 'react-bootstrap';
+import { Col, NavLink, Row } from 'react-bootstrap';
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
@@ -17,7 +17,7 @@ export const NavBar = () => {
     <Navbar bg="light" expand="lg">
       <Container>
         <Navbar.Brand>
-          <Link to='/'><h1>App</h1></Link>
+          <Nav.Link><h1 ><NavElem className='app-title' ruta={'App'} destino={'/'}/></h1></Nav.Link>
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">

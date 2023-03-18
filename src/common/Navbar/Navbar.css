@@ -3,6 +3,11 @@
 .nav-tabs{
     width:100vw;
 }
+.app-title{
+    text-decoration: none;
+    color: grey;
+    margin-left:15px;
+}
 .log-panel{
     width:100px;
     display:flex;
