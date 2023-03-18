@@ -7,7 +7,7 @@ export const NavElem = ({ruta, destino, className, type, click}) => {
     const navigate = useNavigate();
     return (
         <div className={className || 'nav-elem'} onClick={()=> {
-            click();
+            if(click) click();
             navigate(destino);
             }}>
             {ruta}{type==='principal' && (

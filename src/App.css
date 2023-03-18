@@ -1,12 +1,10 @@
 body {
   background-color: beige;
 }
-/* 
-.col {
-  padding: 0 !important;
-  margin: 0 !important;
-} */
 div{
   padding: 0 !important;
   margin: 0 !important;
+}
+.offcanvas-body{
+  width:100px;
 }
