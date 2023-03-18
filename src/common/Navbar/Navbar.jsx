@@ -6,6 +6,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { userData, logout } from '../Login/userSlice';
 import { NavElem } from '../NavElem/NavElem';
 import './NavBar.css';
+import Menu from '~icons/mdi/menu'
 
 export const NavBar = (showMenu) => {
   const select = useSelector(userData); //read
@@ -17,19 +18,23 @@ export const NavBar = (showMenu) => {
         <Navbar.Brand>
           <Nav.Link><NavElem className='app-title' type='principal' ruta={''} destino={'/'}></NavElem></Nav.Link>
         </Navbar.Brand>
-        <Navbar.Toggle aria-controls="basic-navbar-nav" />
-        <Navbar.Collapse id="basic-navbar-nav">
+        {/* <Navbar.Toggle aria-controls="basic-navbar-nav" /> */}
+        {/* <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">
           
           </Nav>
-        </Navbar.Collapse>
+        </Navbar.Collapse> */}
         { select.credenciales.token ? (
           <div className='log-panel'>
             <p className='log-name'> Hola {select.credenciales.name}</p>
             <Button onClick={()=>dispatch(logout({credenciales:[]}))}>Logout</Button>
           </div>
         ):(
-          <Button onClick={showMenu.showMenu}> Login Menu </Button>    
+          <div className='log-panel'>
+            <Button onClick={showMenu.showMenu}>
+              <Menu/>
+            </Button>
+          </div>
         )}
       </Container>
     </Navbar>

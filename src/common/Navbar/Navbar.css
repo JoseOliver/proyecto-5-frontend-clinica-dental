@@ -1,11 +1,11 @@
-.navbar{
+.navbar>.container{
     padding:0;
     justify-content: space-between;
     width: 100vw;
     max-width: 10000px;
 }
-.nav-tabs{
-    width:100vw;
+.log-panel{
+    margin-right: 15px !important;
 }
 .app-title{
     color: grey;
