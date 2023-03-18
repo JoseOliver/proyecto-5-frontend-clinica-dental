@@ -83,7 +83,7 @@ export const Login = () => {
             <Row>
                 <Col>
                     {
-                    !select.credenciales?.token ?
+                    !select.credenciales.token ?
                     (
                         <div>
                             <p>Login</p>

@@ -1,48 +1,36 @@
-import React, { useEffect } from 'react';
-import { Col, NavLink, Row } from 'react-bootstrap';
+import Logo from '../../assets/logo.png';
+import React, { useState } from 'react';
 import Container from 'react-bootstrap/Container';
-import Nav from 'react-bootstrap/Nav';
-import Navbar from 'react-bootstrap/Navbar';
+import { Nav , Navbar, Button } from 'react-bootstrap';
 import { useSelector, useDispatch } from 'react-redux';
-import { Link } from 'react-router-dom';
 import { userData, logout } from '../Login/userSlice';
 import { NavElem } from '../NavElem/NavElem';
 import './NavBar.css';
 
-export const NavBar = () => {
+export const NavBar = (showMenu) => {
   const select = useSelector(userData); //read
   const dispatch= useDispatch(); //write
 
   return (
-    <Navbar bg="light" expand="lg">
+    <Navbar bg="light" expand="md">
       <Container>
         <Navbar.Brand>
-          <Nav.Link><h1 ><NavElem className='app-title' ruta={'App'} destino={'/'}/></h1></Nav.Link>
+          <Nav.Link><NavElem className='app-title' type='principal' ruta={''} destino={'/'}></NavElem></Nav.Link>
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">
-          { !select.credenciales.token?
-          (
-          <>
-            <Nav.Link>
-              <NavElem ruta={'Login'} destino={'/auth/login'}></NavElem>
-            </Nav.Link>
-            <Nav.Link href="#link">
-              <NavElem ruta={'Register'} destino={'/auth/register'}></NavElem>
-            </Nav.Link>
-          </>
-          ):(
-          <>
-            <div className='log-panel'>
-              <p className='log-name'> Hola {select.credenciales.name}</p>
-              <button onClick={()=>dispatch(logout({credenciales:[]}))}>Logout</button>
-            </div>
-          </>
-          )
-          }
+          
           </Nav>
         </Navbar.Collapse>
+        { select.credenciales.token ? (
+          <div className='log-panel'>
+            <p className='log-name'> Hola {select.credenciales.name}</p>
+            <Button onClick={()=>dispatch(logout({credenciales:[]}))}>Logout</Button>
+          </div>
+        ):(
+          <Button onClick={showMenu.showMenu}> Login Menu </Button>    
+        )}
       </Container>
     </Navbar>
   )

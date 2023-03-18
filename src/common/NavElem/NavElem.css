@@ -9,8 +9,14 @@
     width: 100px;
     text-align: center;
 }
-.app-title{
-    color: grey;
+.logo{
+    display:flex;
+    gap: 15px;
+}
+.logo-img{
+    height:3em;
+    border: 3px solid black;
+    margin-left: 15px;
 }
 .nav-elem:hover{
     background-color: beige;
