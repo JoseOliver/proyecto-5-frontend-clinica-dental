@@ -1,15 +1,16 @@
 import { useState } from 'react';
 import { Route, Routes } from 'react-router-dom';
-import './App.css'
 import { Home } from './pages/Home';
 import { Register } from './common/Register/Register';
 import { Login } from './common/Login/Login';
 import { NavBar } from './common/NavBar/Navbar';
 import { NavElem } from './common/NavElem/NavElem';
+import { User } from './pages/User';
 
-import { Container, Row, Col, Offcanvas } from 'react-bootstrap';
+import { Container, Row, Col, Offcanvas, Button } from 'react-bootstrap';
 import { useSelector, useDispatch } from 'react-redux';
-import { userData } from './common/Login/userSlice';
+import { userData, logout } from './common/Login/userSlice';
+import './App.css'
 
 export const App = () => {
 
@@ -35,8 +36,11 @@ export const App = () => {
         ):
         (
         <>
-          <p className='log-name'> Hola {select.credenciales.name}</p>
-          <button onClick={()=>dispatch(logout({credenciales:[]}))}>Logout</button>
+          <div className='log'>
+            <p className='log-name'> Hola {select.credenciales.name}</p>
+            <Button onClick={()=>dispatch(logout({credenciales:[]}))}>Logout</Button>
+          </div>
+          <NavElem ruta='Usuario' destino='/user'></NavElem>
         </>
         )}
         </Offcanvas.Body>
@@ -48,6 +52,7 @@ export const App = () => {
             <Route path='/' element={<Home></Home>}></Route>
             <Route path='/auth/login' element={<Login></Login>}></Route>
             <Route path='/auth/register' element={<Register></Register>}></Route>
+            <Route path='/user' element={<User></User>}></Route>
           </Routes>
         </Col>
       </Row>

@@ -1,7 +1,8 @@
 import React from 'react'
+import { UserDetail } from '../common/UserDetail/UserDetail'
 
 export const User = () => {
   return (
-    <div>User</div>
+    <UserDetail></UserDetail>
   )
 }

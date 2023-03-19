@@ -1,0 +1,7 @@
+.link{
+    color:lightblue;
+    border: 2px solid blue;
+    width: 100px;
+    text-align: center;
+    cursor:pointer;
+}

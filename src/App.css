@@ -11,3 +11,12 @@ div{
   flex-direction: column;
   align-items: center;
 }
+.log-name{
+  text-align: center;
+}
+.log{
+  display:flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+}

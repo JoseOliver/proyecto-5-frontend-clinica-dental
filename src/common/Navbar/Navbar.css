@@ -5,7 +5,19 @@
     max-width: 10000px;
 }
 .log-panel{
-    margin-right: 15px !important;
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    padding-right: 15px !important;
+}
+.log-button{
+    display: flex;
+    align-items: center;
+    padding-right: 15px !important;
+}
+Button{
+    height: fit-content !important;
 }
 .app-title{
     color: grey;

@@ -16,26 +16,19 @@ export const NavBar = (showMenu) => {
     <Navbar bg="light" expand="md">
       <Container>
         <Navbar.Brand>
-          <Nav.Link><NavElem className='app-title' type='principal' ruta={''} destino={'/'}></NavElem></Nav.Link>
+          <Nav.Link><NavElem className='app-title' type='principal' ruta='' destino='/'></NavElem></Nav.Link>
         </Navbar.Brand>
-        {/* <Navbar.Toggle aria-controls="basic-navbar-nav" /> */}
-        {/* <Navbar.Collapse id="basic-navbar-nav">
-          <Nav className="me-auto">
-          
-          </Nav>
-        </Navbar.Collapse> */}
-        { select.credenciales.token ? (
-          <div className='log-panel'>
-            <p className='log-name'> Hola {select.credenciales.name}</p>
-            <Button onClick={()=>dispatch(logout({credenciales:[]}))}>Logout</Button>
-          </div>
-        ):(
-          <div className='log-panel'>
+          <div className="log-button">
+            { select.credenciales.token && (
+              <div className='log-panel'>
+                <p className='log-name'> Hola {select.credenciales.name}</p>
+                <Button onClick={()=>dispatch(logout({credenciales:[]}))}>Logout</Button>
+              </div>
+            )}
             <Button onClick={showMenu.showMenu}>
               <Menu/>
             </Button>
           </div>
-        )}
       </Container>
     </Navbar>
   )
