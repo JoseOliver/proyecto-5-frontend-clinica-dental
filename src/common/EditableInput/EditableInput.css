@@ -1,0 +1,5 @@
+.editableInput{
+    height: 38px;
+    display: flex;
+    gap: 5px;
+}

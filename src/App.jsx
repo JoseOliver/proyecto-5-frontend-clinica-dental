@@ -40,7 +40,7 @@ export const App = () => {
             <p className='log-name'> Hola {select.credenciales.name}</p>
             <Button onClick={()=>dispatch(logout({credenciales:[]}))}>Logout</Button>
           </div>
-          <NavElem ruta='Usuario' destino='/user'></NavElem>
+          <NavElem ruta='Usuario' destino='/user' click={handleClose}></NavElem>
         </>
         )}
         </Offcanvas.Body>
