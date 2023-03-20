@@ -15,6 +15,7 @@ export const EditableInput = ({name, validateFunc, editFunc}) => {
 
     const inputHandler =(elem)=>{ 
         setValue(elem.target.value);
+        if(error!==''){errorHandler(elem)};
     }
     const errorHandler =(elem)=>{
         let error='';

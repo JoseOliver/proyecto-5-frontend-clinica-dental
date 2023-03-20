@@ -15,7 +15,6 @@ export const Login = () => {
 //    const userReduxCredenciales = useSelector(userData);
     const dispatch= useDispatch();
     const select= useSelector(userData);
-
     const navigate= useNavigate();
     
     const [welcome, setWelcome] = useState("");
@@ -66,8 +65,8 @@ export const Login = () => {
             .then((data)=>{
             //             //falta guardar data en el hook de data y navegar a user
                 dispatch( login({credenciales:data}));
-                setWelcome('Bienvenido de nuevo, '+ data.name);
-            //navigate(to='/')
+                setWelcome('Bienvenido de nuevo, '+ data.name + '. Redirigiendo a Home...');
+                setTimeout(()=>navigate('/'),2000);
             })
             .catch((error)=>{console.log(error)});
         }else{
