@@ -15,8 +15,17 @@ div{
   text-align: center;
 }
 .log{
-  display:flex;
+  display: flex;
   flex-direction: column;
   justify-content: center;
-  text-align: center;
+  align-items: center;
+}
+.user{
+  width:300px;
+  border: 2px solid grey;
+}
+.users{
+  display:flex;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
 }

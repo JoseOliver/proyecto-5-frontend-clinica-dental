@@ -10,3 +10,15 @@
     display: flex;
     align-items: center;
 }
+.user-elem{
+    display:flex;
+    align-items: center;
+}
+.label{
+    width:100px;
+}
+.me{
+    display:flex;
+    flex-direction: column;
+    gap:5px;
+}

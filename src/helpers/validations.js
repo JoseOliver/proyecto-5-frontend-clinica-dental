@@ -1,15 +1,15 @@
 export const inputValidate= (elem,data) => {
     switch(elem.name){
         case 'name':
-            if(data.length > 10){
-                return "Nombre incorrecto (menos de 10 caracteres)";
+            if(data.length > 20){
+                return "Nombre incorrecto (tiene mas de 20 caracteres)";
             }else{
                 return "";
             }
         case 'first_surname':
         case 'apellido1':
-            if(data.length > 10){
-                return "Apellido incorrecto (menos de 10 caracteres)";
+            if(data.length > 20){
+                return "Apellido incorrecto (tiene mas de 20 caracteres)";
             }else{
                 return "";
             }
@@ -21,7 +21,7 @@ export const inputValidate= (elem,data) => {
                 return "Email incorrecto"
             }
         case "password":
-            if(data.length < 8){
+            if(data.length < 2){
                 return "Password tiene que tener al menos 8 caracteres";
             }else{
                 return "";

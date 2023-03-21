@@ -2,9 +2,10 @@ import React, { useState } from 'react';
 import { inputValidate } from '../../helpers/validations';
 
 import { useSelector, useDispatch } from 'react-redux';
-import { userData, update } from '../Login/userSlice';
+import { userData, update } from '../../helpers/userSlice';
 import { Button } from 'react-bootstrap';
 import './EditableInput.css'
+import { updateMe } from '../../services/apiCalls';
 
 export const EditableInput = ({name, validateFunc, editFunc}) => {
     const user = useSelector(userData);
@@ -35,11 +36,16 @@ export const EditableInput = ({name, validateFunc, editFunc}) => {
                 ...user.credenciales
             };
             data[name]=value;
-            console.log(elem.target.value);
-            // updateUser(elem.target.name,elem.target.value)
-            // .then()
-            // .catch((error)=> console.log(error));
-            //guardar en base de datos
+            let body = {
+                changes:{
+                    [name]:value
+                }
+            }
+            updateMe(body, user.credenciales.token)
+            .then((res)=>{
+                
+            })
+            .catch((error)=>{console.log(error)});
             dispatch(update({credenciales:data}));
             editFunc(
                 (prevState)=>({
@@ -75,6 +81,7 @@ export const EditableInput = ({name, validateFunc, editFunc}) => {
                         </Button>
                         <Button variant="danger" onClick={(elem)=>{
                             setValue(user.credenciales[name]);
+                            setError('');
                             setEditStatus(true);
                         }}>
                             Cancela

@@ -6,11 +6,13 @@ import { Login } from './common/Login/Login';
 import { NavBar } from './common/NavBar/Navbar';
 import { NavElem } from './common/NavElem/NavElem';
 import { User } from './pages/User';
+import { SelectedUserDetail } from './pages/SelectedUserDetail';
 
 import { Container, Row, Col, Offcanvas, Button } from 'react-bootstrap';
 import { useSelector, useDispatch } from 'react-redux';
-import { userData, logout } from './common/Login/userSlice';
+import { userData, logout } from './helpers/userSlice';
 import './App.css'
+import { Medic } from './pages/Medic';
 
 export const App = () => {
 
@@ -41,6 +43,9 @@ export const App = () => {
             <Button onClick={()=>dispatch(logout({credenciales:[]}))}>Logout</Button>
           </div>
           <NavElem ruta='Usuario' destino='/user' click={handleClose}></NavElem>
+          {select.credenciales.roleId===3 && (
+            <NavElem ruta='Panel de medico' destino='/medic' click={handleClose}></NavElem>
+          )}
         </>
         )}
         </Offcanvas.Body>
@@ -53,6 +58,8 @@ export const App = () => {
             <Route path='/auth/login' element={<Login></Login>}></Route>
             <Route path='/auth/register' element={<Register></Register>}></Route>
             <Route path='/user' element={<User></User>}></Route>
+            <Route path='/medic' element={<Medic></Medic>}></Route>
+            <Route path='/medic/user' element={<SelectedUserDetail></SelectedUserDetail>}></Route>
           </Routes>
         </Col>
       </Row>

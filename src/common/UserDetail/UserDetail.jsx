@@ -4,7 +4,7 @@ import { EditableInput } from '../EditableInput/EditableInput'
 import { Container, Col, Row } from 'react-bootstrap'
 import { useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom';
-import { userData } from '../Login/userSlice';
+import { userData } from '../../helpers/userSlice';
 
 import './UserDetail.css';
 
@@ -28,10 +28,14 @@ export const UserDetail = () => {
             <Row>
                 <Col>
                     {select.credenciales.token?(
-                        <div>
+                        <div className='me'>
                             <h2>Perfil de {select.credenciales.name}</h2>
-                            <div>Nombre: <EditableInput name='name' validateFunc={setUserError} editFunc={setUserEditing}></EditableInput></div>
-                            <div>Email: <EditableInput name='email' validateFunc={setUserError}></EditableInput></div>
+                            <div className='user-elem'><div className='label'>Nombre: </div><EditableInput name='name' validateFunc={setUserError} editFunc={setUserEditing}></EditableInput></div>
+                            <div className='user-elem'><div className='label'>Apellido 1: </div><EditableInput name='first_surname' validateFunc={setUserError} editFunc={setUserEditing}></EditableInput></div>
+                            <div className='user-elem'><div className='label'>Apellido 2: </div><EditableInput name='second_surname' validateFunc={setUserError} editFunc={setUserEditing}></EditableInput></div>
+                            <div className='user-elem'><div className='label'>Dirección: </div><EditableInput name='address' validateFunc={setUserError} editFunc={setUserEditing}></EditableInput></div>
+                            <div className='user-elem'><div className='label'>Teléfono: </div><EditableInput name='phone' validateFunc={setUserError} editFunc={setUserEditing}></EditableInput></div>
+                            <div className='user-elem'><div className='label'>Email: </div><input type="text" value={select.credenciales.email} readOnly/></div>
                         </div>
                     ):(
                         <div>

@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import Container from 'react-bootstrap/Container';
 import { Nav , Navbar, Button } from 'react-bootstrap';
 import { useSelector, useDispatch } from 'react-redux';
-import { userData, logout } from '../Login/userSlice';
+import { userData, logout } from '../../helpers/userSlice';
 import { NavElem } from '../NavElem/NavElem';
 import './NavBar.css';
 import Menu from '~icons/mdi/menu'
@@ -20,7 +20,7 @@ export const NavBar = (showMenu) => {
         </Navbar.Brand>
           <div className="log-button">
             { select.credenciales.token && (
-              <div className='log-panel'>
+              <div className='log-panel-bar'>
                 <p className='log-name'> Hola {select.credenciales.name}</p>
                 <Button onClick={()=>dispatch(logout({credenciales:[]}))}>Logout</Button>
               </div>

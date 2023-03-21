@@ -1,20 +1,20 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { logIn } from '../../services/apiCalls';
+import { bringUsers, logMe } from '../../services/apiCalls';
 import { InputText } from '../InputText/InputText';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import './Login.css';
 
-import { userData, login } from './userSlice';
+import { userData, update } from '../../helpers/userSlice';
 import { useDispatch, useSelector } from 'react-redux';
 
 export const Login = () => {
 
 //    const userReduxCredenciales = useSelector(userData);
-    const dispatch= useDispatch();
-    const select= useSelector(userData);
+    const dispatch = useDispatch();
+    const user= useSelector(userData);
     const navigate= useNavigate();
     
     const [welcome, setWelcome] = useState("");
@@ -61,11 +61,21 @@ export const Login = () => {
             credencialesError.emailError==='' && credencialesError.passwordError===''
             && credencialesError.totalError===''
         ){
-            logIn(credenciales)
-            .then((data)=>{
-            //             //falta guardar data en el hook de data y navegar a user
-                dispatch( login({credenciales:data}));
-                setWelcome('Bienvenido de nuevo, '+ data.name + '. Redirigiendo a Home...');
+            logMe(credenciales)
+            .then((respuesta)=>{
+                let me={
+                    id: respuesta.data.id,
+                    name: respuesta.data.name,
+                    first_surname: respuesta.data.first_surname,
+                    second_surname: respuesta.data.second_surname,
+                    email: respuesta.data.email,
+                    token: respuesta.token,
+                    address: respuesta.data.address,
+                    phone: respuesta.data.phone,
+                    roleId: respuesta.data.role_id
+                }
+                dispatch(update({credenciales:me}));
+                setWelcome('Bienvenido de nuevo, '+ me.name + '. Redirigiendo a Home...');
                 setTimeout(()=>navigate('/'),2000);
             })
             .catch((error)=>{console.log(error)});
@@ -82,7 +92,7 @@ export const Login = () => {
             <Row>
                 <Col>
                     {
-                    !select.credenciales.token ?
+                    !user.credenciales.token ?
                     (
                         <div>
                             <p>Login</p>
