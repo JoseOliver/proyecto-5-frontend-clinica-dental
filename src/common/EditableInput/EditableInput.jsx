@@ -69,9 +69,17 @@ export const EditableInput = ({name, validateFunc, editFunc}) => {
                         Edita
                     </Button>
                 ):(
-                    <Button variant="success" onClick={(elem)=>saveInput(elem)}>
-                        Guarda
-                    </Button>
+                    <>
+                        <Button variant="success" onClick={(elem)=>saveInput(elem)}>
+                            Guarda
+                        </Button>
+                        <Button variant="danger" onClick={(elem)=>{
+                            setValue(user.credenciales[name]);
+                            setEditStatus(true);
+                        }}>
+                            Cancela
+                        </Button>
+                    </>
                 )
             }
             {
