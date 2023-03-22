@@ -5,7 +5,7 @@ import { Nav , Navbar, Button } from 'react-bootstrap';
 import { useSelector, useDispatch } from 'react-redux';
 import { userData, logout } from '../../helpers/userSlice';
 import { NavElem } from '../NavElem/NavElem';
-import './NavBar.css';
+import './Navbar.css';
 import Menu from '~icons/mdi/menu'
 
 export const NavBar = (showMenu) => {
