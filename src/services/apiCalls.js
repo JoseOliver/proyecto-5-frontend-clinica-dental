@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { decodeToken } from 'react-jwt';
-const root='http://localhost:3000';
+const root='https://cdentalp4-production.up.railway.app';
 
 export const bringUsers= async (token) => {
     let config = {

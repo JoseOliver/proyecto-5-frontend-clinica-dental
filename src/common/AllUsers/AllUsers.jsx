@@ -37,7 +37,7 @@ export const AllUsers = () => {
           </h2>
           <h3>Users:</h3>
           <div className="users">
-            {
+            {users.users &&
               
               users.users.map((user_i)=>{
                 return (<div className='user' key={user_i.id} onClick={()=>click(user_i)}>  
@@ -45,6 +45,9 @@ export const AllUsers = () => {
                   email: {user_i.email} <br />
                 </div>)
               })
+            }
+            {!users.users &&
+              <div>cargando...</div>
             }
           </div>
         </div>
