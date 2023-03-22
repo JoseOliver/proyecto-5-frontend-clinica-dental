@@ -3,7 +3,7 @@ import { Route, Routes } from 'react-router-dom';
 import { Home } from './pages/Home';
 import { Register } from './common/Register/Register';
 import { Login } from './common/Login/Login';
-import { NavBar } from './common/NavBar/NavBar';
+import { NavBar } from './common/Navbar/Navbar';
 import { NavElem } from './common/NavElem/NavElem';
 import { User } from './pages/User';
 import { SelectedUserDetail } from './pages/SelectedUserDetail';
