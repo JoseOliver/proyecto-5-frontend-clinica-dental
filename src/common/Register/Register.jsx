@@ -1,4 +1,5 @@
 import React, {useState} from 'react';
+import { useNavigate } from 'react-router-dom';
 import { register } from '../../services/apiCalls';
 import { DropdownBtn } from '../DropdownBtn/DropdownBtn';
 import { InputText } from '../InputText/InputText';
@@ -7,6 +8,7 @@ import './Register.css'
 export const Register = () => {
 
   let options= [{id:1,name:'Paciente', value:'paciente'},{id:2,name:'Médico', value:'medico'}];
+  let navigate = useNavigate();
 
   const [registro, setRegistro] = useState({
     name: '',
@@ -30,7 +32,10 @@ export const Register = () => {
   const registerFunc=()=>{
     if( registro.password !== '' && registroError.passwordError===''){
       register(registro)
-      .then((body)=>setMensaje(body))
+      .then((body)=>{
+        setMensaje('Ususario '+ body.data.name + ' registrado');
+        navigate('/auth/login');
+      })
       .catch((error)=>setMensaje(error));
     }
   }
@@ -50,8 +55,29 @@ export const Register = () => {
     
           <InputText
               type="text"
-              name="apellido1" // linea de bindeo con el hook
-              placeholder="Apellido"
+              name="first_surname" // linea de bindeo con el hook
+              placeholder="Primer apellido"
+              setFunc={setRegistro}
+              validateFunc={setRegistroError}
+          ></InputText>
+          <InputText
+              type="text"
+              name="second_surname" // linea de bindeo con el hook
+              placeholder="Segundo apellido"
+              setFunc={setRegistro}
+              validateFunc={setRegistroError}
+          ></InputText>
+          <InputText
+              type="text"
+              name="phone" // linea de bindeo con el hook
+              placeholder="Teléfono"
+              setFunc={setRegistro}
+              validateFunc={setRegistroError}
+          ></InputText>
+          <InputText
+              type="text"
+              name="address" // linea de bindeo con el hook
+              placeholder="Dirección"
               setFunc={setRegistro}
               validateFunc={setRegistroError}
           ></InputText>

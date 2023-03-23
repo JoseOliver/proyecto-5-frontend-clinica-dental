@@ -32,3 +32,12 @@ div{
 .margin{
   margin: 10px !important;
 }
+.appointment{
+  width:300px;
+  border: 2px solid grey;
+}
+.appointments{
+  display:flex;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+}

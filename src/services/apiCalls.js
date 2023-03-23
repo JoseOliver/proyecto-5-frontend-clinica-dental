@@ -46,11 +46,27 @@ export const logMe = async (data) => {
 }
 export const register= async (body) => {
     // return await axios.get(root + '/user/auth/register', body); // esta linea devolverá un token
-    return body.name+' Registrado';
+    const sentBody={
+        name:body.name,
+        first_surname:body.first_surname,
+        second_surname:body.second_surname,
+        phone:body.phone,
+        address: body.address,
+        email: body.email,
+        password: body.password
+    }
+    let data = await axios.post(`${root}/auth/register`, sentBody);
+    return data.data;
 }
 
-export const getAllUsers= async (body) => {
-    return [{id:1,name:'Juan', email: 'juan@juan.com'},{id:2,name:'Roberto', email: 'roberto@roberto.com'}];
+export const getAppointments= async (token)=> {
+    let config = {
+        headers: {
+            Authorization: 'Bearer ' + token
+        }
+    }
+    let data = await axios.get(`${root}/appointments/user`, config)
+    return data;
 }
 
 export const getMe= async (data) => {
