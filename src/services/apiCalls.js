@@ -66,6 +66,9 @@ export const getAppointments= async (token)=> {
         }
     }
     let data = await axios.get(`${root}/appointments/user`, config)
+    for( let elem of data.data.data ){
+        elem.date= elem.date.slice(0, -1);
+    }
     return data;
 }
 
@@ -81,5 +84,15 @@ export const updateMe = async(body, token) =>{
         }
     }
     let res = await axios.put(`${root}/users/me`, body, config);
+    return res;
+}
+
+export const updateAppointment = async (body, token) =>{
+    let config = {
+        headers: {
+            Authorization: 'Bearer ' + token
+        }
+    }
+    let res = await axios.put(`${root}/appointments`, body, config);
     return res;
 }

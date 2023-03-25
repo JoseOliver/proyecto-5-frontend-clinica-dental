@@ -1,3 +1,5 @@
+import * as dayjs from 'dayjs'
+
 export const inputValidate= (elem,data) => {
     switch(elem.name){
         case 'name':
@@ -21,11 +23,11 @@ export const inputValidate= (elem,data) => {
                     return "";
                 }
         case "email":
-        const emailregex = new RegExp('^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$');
+        const emailregex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
             if(emailregex.test(data)){
-                return ""
+                return "";
             }else{
-                return "Email incorrecto"
+                return "Email incorrecto";
             }
         case "password":
             if(data.length < 2){
@@ -44,6 +46,12 @@ export const inputValidate= (elem,data) => {
                 return "dirección muy larga (mas de 30 caracteres)";
             }else{
                 return '';
+            }
+        case 'date':
+            if(dayjs(data).isValid()){
+                return '';
+            }else{
+                return 'formato de fecha no valido';
             }
         default:
             return 'field not recongnized';

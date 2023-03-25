@@ -30,12 +30,12 @@ export const UserDetail = () => {
                     {select.credenciales.token?(
                         <div className='me'>
                             <h2>Perfil de {select.credenciales.name}</h2>
-                            <div className='user-elem'><div className='label'>Nombre: </div><EditableInput name='name' validateFunc={setUserError} editFunc={setUserEditing}></EditableInput></div>
-                            <div className='user-elem'><div className='label'>Apellido 1: </div><EditableInput name='first_surname' validateFunc={setUserError} editFunc={setUserEditing}></EditableInput></div>
-                            <div className='user-elem'><div className='label'>Apellido 2: </div><EditableInput name='second_surname' validateFunc={setUserError} editFunc={setUserEditing}></EditableInput></div>
-                            <div className='user-elem'><div className='label'>Dirección: </div><EditableInput name='address' validateFunc={setUserError} editFunc={setUserEditing}></EditableInput></div>
-                            <div className='user-elem'><div className='label'>Teléfono: </div><EditableInput name='phone' validateFunc={setUserError} editFunc={setUserEditing}></EditableInput></div>
-                            <div className='user-elem'><div className='label'>Email: </div><input type="text" value={select.credenciales.email} readOnly/></div>
+                            <div className='elem'><div className='label'>Nombre: </div><EditableInput name='name' validateFunc={setUserError} editFunc={setUserEditing} data={userData}></EditableInput></div>
+                            <div className='elem'><div className='label'>Apellido 1: </div><EditableInput name='first_surname' validateFunc={setUserError} editFunc={setUserEditing} data={userData}></EditableInput></div>
+                            <div className='elem'><div className='label'>Apellido 2: </div><EditableInput name='second_surname' validateFunc={setUserError} editFunc={setUserEditing} data={userData}></EditableInput></div>
+                            <div className='elem'><div className='label'>Dirección: </div><EditableInput name='address' validateFunc={setUserError} editFunc={setUserEditing} data={userData}></EditableInput></div>
+                            <div className='elem'><div className='label'>Teléfono: </div><EditableInput name='phone' validateFunc={setUserError} editFunc={setUserEditing} data={userData}></EditableInput></div>
+                            <div className='elem'><div className='label'>Email: </div><input type="text" value={select.credenciales.email} readOnly/></div>
                         </div>
                     ):(
                         <div>

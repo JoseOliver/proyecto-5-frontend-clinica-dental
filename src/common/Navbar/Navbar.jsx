@@ -7,10 +7,12 @@ import { userData, logout } from '../../helpers/userSlice';
 import { NavElem } from '../NavElem/NavElem';
 import './Navbar.css';
 import Menu from '~icons/mdi/menu'
+import { useNavigate } from 'react-router-dom';
 
 export const NavBar = (showMenu) => {
   const select = useSelector(userData); //read
   const dispatch= useDispatch(); //write
+  const navigate= useNavigate();
 
   return (
     <Navbar bg="light" expand="md">
@@ -22,7 +24,12 @@ export const NavBar = (showMenu) => {
             { select.credenciales.token && (
               <div className='log-panel-bar'>
                 <p className='log-name'> Hola {select.credenciales.name}</p>
-                <Button onClick={()=>dispatch(logout({credenciales:[]}))}>Logout</Button>
+                <Button onClick={()=>{
+                  dispatch(logout({credenciales:[]}));
+                  navigate('/');
+                }}>
+                  Logout
+                </Button>
               </div>
             )}
             <Button onClick={showMenu.showMenu}>

@@ -9,6 +9,7 @@ import { User } from './pages/User';
 import { SelectedUserDetail } from './pages/SelectedUserDetail';
 import { Medic } from './pages/Medic';
 import { Appointment } from './pages/Appointment';
+import { AppointmentDetail } from './common/AppointmentDetail/AppointmentDetail';
 
 import { Container, Row, Col, Offcanvas, Button } from 'react-bootstrap';
 import { useSelector, useDispatch } from 'react-redux';
@@ -44,7 +45,7 @@ export const App = () => {
             <Button onClick={()=>dispatch(logout({credenciales:[]}))}>Logout</Button>
           </div>
           <NavElem ruta='Usuario' destino='/user' click={handleClose}></NavElem>
-          <NavElem ruta='Citas' destino='/user/appointment' click={handleClose}></NavElem>
+          <NavElem ruta='Citas' destino='/user/appointments' click={handleClose}></NavElem>
           {select.credenciales.roleId===3 && (
             <NavElem ruta='Panel de medico' destino='/medic' click={handleClose}></NavElem>
           )}
@@ -60,7 +61,8 @@ export const App = () => {
             <Route path='/auth/login' element={<Login></Login>}></Route>
             <Route path='/auth/register' element={<Register></Register>}></Route>
             <Route path='/user' element={<User></User>}></Route>
-            <Route path='/user/appointment' element={<Appointment></Appointment>}></Route>
+            <Route path='/user/appointments' element={<Appointment></Appointment>}></Route>
+            <Route path='/user/appointments/detail' element={<AppointmentDetail></AppointmentDetail>}></Route>
             <Route path='/medic' element={<Medic></Medic>}></Route>
             <Route path='/medic/user' element={<SelectedUserDetail></SelectedUserDetail>}></Route>
           </Routes>
