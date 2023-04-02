@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { inputValidate } from '../../helpers/validations';
 
 import { useSelector, useDispatch } from 'react-redux';
@@ -11,6 +11,10 @@ import * as dayjs from 'dayjs'
 import { appointmentData, setNewAppointment } from '../../helpers/appointmentSlice';
 
 export const EditableInput = ({name, type, validateFunc, editFunc, data}) => {
+
+    useEffect(()=>{
+        if(data ===appointmentData && name==='date')dispatch(setNewAppointment({appointment:{date:value}}));
+    },[])
     const user= useSelector(userData);
     const select = useSelector(data);
     const [tempData, setTempData] = useState('');
