@@ -8,10 +8,12 @@ import './EditableInput.css'
 import { updateMe, updateAppointment } from '../../services/apiCalls';
 import { appointmentsData, setAppointments } from '../../helpers/appointmentsSlice';
 import * as dayjs from 'dayjs'
+import { appointmentData, setNewAppointment } from '../../helpers/appointmentSlice';
 
 export const EditableInput = ({name, type, validateFunc, editFunc, data}) => {
     const user= useSelector(userData);
     const select = useSelector(data);
+    const [tempData, setTempData] = useState('');
     let contenedor
     let pushFunc
     if( data === userData ) {
@@ -22,6 +24,9 @@ export const EditableInput = ({name, type, validateFunc, editFunc, data}) => {
         contenedor= 'selected';
         pushFunc = updateAppointment;
     };
+    if (data === appointmentData){
+        contenedor = 'appointment';
+    }
     const dispatch = useDispatch();
     const [editStatus,setEditStatus]= useState(true);
     const [value, setValue] = useState(select[contenedor][name]);
@@ -42,16 +47,14 @@ export const EditableInput = ({name, type, validateFunc, editFunc, data}) => {
             }));
     }
     const saveInput = (elem) =>{
-        if(error === ''){
-            elem.target.readOnly=true;
-            setEditStatus(true);
+        if(data===appointmentsData && name==='date'){
             let body = {
                 id:select.selected.id,
                 changes:{
                     [name]:value
                 }
-            }
-            if(data=appointmentsData && name==='date')body.changes.date=dayjs(body.changes.date).format('YYYY-MM-DD hh:mm:ss');
+            };
+            body.changes.date=dayjs(body.changes.date).format('YYYY-MM-DD hh:mm:ss');
             pushFunc(body, user.credenciales.token)
             .then((res)=>{
                 if(data === userData)dispatch(update({[name]:value}));
@@ -64,12 +67,24 @@ export const EditableInput = ({name, type, validateFunc, editFunc, data}) => {
                     ...prevState, 
                     [name+'Edit']:false
                 })
-            );
+                );
+            }
+            if(data ===appointmentData && name==='date'){
+                editFunc(
+                    (prevState)=>({
+                        ...prevState, 
+                        [name+'Edit']:false
+                    })
+                    );
+                    dispatch(setNewAppointment({appointment:{date:value}}));
+            }
+            if(error === ''){
+                elem.target.readOnly=true;
+                setEditStatus(true);
+            }
         }
-    }
-
-    return (
-        <div className='editableInput'>
+            return (
+                <div className='editableInput'>
             <input type={type} name={name} value={value} onChange={(elem)=>{inputHandler(elem)}} onBlur={(elem)=>{errorHandler(elem)}} readOnly={editStatus}/>
             {
                 editStatus?
@@ -82,8 +97,8 @@ export const EditableInput = ({name, type, validateFunc, editFunc, data}) => {
                                 [name+'Edit']:true
                             })
                         );
-                    }
-                    }>
+                        setTempData(value);
+                    }}>
                         Edita
                     </Button>
                 ):(
@@ -92,7 +107,7 @@ export const EditableInput = ({name, type, validateFunc, editFunc, data}) => {
                             Guarda
                         </Button>
                         <Button variant="danger" onClick={(elem)=>{
-                            setValue(select[contenedor][name]);
+                            setValue(tempData);
                             setError('');
                             setEditStatus(true);
                         }}>

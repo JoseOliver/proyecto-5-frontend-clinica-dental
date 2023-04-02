@@ -96,3 +96,32 @@ export const updateAppointment = async (body, token) =>{
     let res = await axios.put(`${root}/appointments`, body, config);
     return res;
 }
+
+export const getMyDoctors = async (token) => {
+    let config = {
+        headers: {
+            Authorization: 'Bearer ' + token
+        }
+    }
+    let res = await axios.get(`${root}/users/my/doctors`, config);
+    return res;
+}
+export const getMyServices = async (token) => {
+    let config = {
+        headers: {
+            Authorization: 'Bearer ' + token
+        }
+    }
+    let res = await axios.get(`${root}/users/my/services`, config);
+    return res;
+}
+export const newAppointment = async (body, token) => {
+    let config = {
+        headers: {
+            Authorization: 'Bearer ' + token
+        }
+    }
+    console.log(body);
+    // let res = await axios.put(`${root}/appointments`, body, config);
+    return res;
+}

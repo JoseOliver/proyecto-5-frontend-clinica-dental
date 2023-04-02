@@ -1,0 +1,7 @@
+.new-appointment{
+    display: flex;
+    gap: 15px;
+}
+.react-datepicker-wrapper{
+    width:180px;
+}

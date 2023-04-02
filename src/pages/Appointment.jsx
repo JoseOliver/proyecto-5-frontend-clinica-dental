@@ -29,10 +29,10 @@ export const Appointment = () => {
   return (
     <>
       <h2>Citas</h2>
-      <Button>Nueva cita</Button>
+      <Button onClick={()=>navigate('/user/appointments/new')}>Nueva cita</Button>
       <div className='appointments'>
         {
-          appointments.length!==0?
+          appointments.appointments.length!==0?
           (
             appointments.appointments.map((appointment)=>{
               return <div className='appointment' key={appointment.id} onClick={()=>click(appointment)}>
@@ -42,7 +42,7 @@ export const Appointment = () => {
               </div>
             })
           ):(
-            <div>Cargando...</div>
+            <div>Sin citas</div>
           )
         }
       </div>

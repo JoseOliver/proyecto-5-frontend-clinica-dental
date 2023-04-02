@@ -10,6 +10,7 @@ import { SelectedUserDetail } from './pages/SelectedUserDetail';
 import { Medic } from './pages/Medic';
 import { Appointment } from './pages/Appointment';
 import { AppointmentDetail } from './common/AppointmentDetail/AppointmentDetail';
+import { NewAppointment } from './common/NewAppointment/NewAppointment';
 
 import { Container, Row, Col, Offcanvas, Button } from 'react-bootstrap';
 import { useSelector, useDispatch } from 'react-redux';
@@ -62,6 +63,7 @@ export const App = () => {
             <Route path='/auth/register' element={<Register></Register>}></Route>
             <Route path='/user' element={<User></User>}></Route>
             <Route path='/user/appointments' element={<Appointment></Appointment>}></Route>
+            <Route path='/user/appointments/new' element={<NewAppointment></NewAppointment>}></Route>
             <Route path='/user/appointments/detail' element={<AppointmentDetail></AppointmentDetail>}></Route>
             <Route path='/medic' element={<Medic></Medic>}></Route>
             <Route path='/medic/user' element={<SelectedUserDetail></SelectedUserDetail>}></Route>
