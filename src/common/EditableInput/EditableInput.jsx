@@ -12,9 +12,6 @@ import { appointmentData, setNewAppointment } from '../../helpers/appointmentSli
 
 export const EditableInput = ({name, type, validateFunc, editFunc, data}) => {
 
-    useEffect(()=>{
-        if(data ===appointmentData && name==='date')dispatch(setNewAppointment({appointment:{date:value}}));
-    },[])
     const user= useSelector(userData);
     const select = useSelector(data);
     const [tempData, setTempData] = useState('');
@@ -33,8 +30,12 @@ export const EditableInput = ({name, type, validateFunc, editFunc, data}) => {
     }
     const dispatch = useDispatch();
     const [editStatus,setEditStatus]= useState(true);
-    const [value, setValue] = useState(select[contenedor][name]);
+    const [value, setValue] = useState('');
     const [error, setError] = useState('');
+
+    useEffect(()=>{
+        if(value==='')setValue(select[contenedor][name]);
+    });
 
     const inputHandler =(elem)=>{ 
         setValue(elem.target.value);
@@ -80,7 +81,6 @@ export const EditableInput = ({name, type, validateFunc, editFunc, data}) => {
                         [name+'Edit']:false
                     })
                     );
-                    dispatch(setNewAppointment({appointment:{date:value}}));
             }
             if(error === ''){
                 elem.target.readOnly=true;

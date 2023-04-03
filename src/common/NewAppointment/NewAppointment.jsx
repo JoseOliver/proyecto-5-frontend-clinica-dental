@@ -29,7 +29,7 @@ export const NewAppointment = () => {
     useEffect(()=>{
             if(user.credenciales.token === undefined)navigate('/auth/login')
             else{
-                dispatch(setNewAppointment({appointment:{date:dayjs().format('YYYY-MM-DD hh:mm:ss')}}));
+                dispatch(setNewAppointment({appointment:{date:dayjs().format('YYYY-MM-DDThh:mm')}}));
                 getMyDoctors(user.credenciales.token)
                 .then(res=>{
                     let _doctors=[];

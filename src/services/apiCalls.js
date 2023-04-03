@@ -122,6 +122,7 @@ export const newAppointment = async (body, token) => {
         }
     }
     console.log(body);
+    let res = '';
     // let res = await axios.put(`${root}/appointments`, body, config);
     return res;
 }
