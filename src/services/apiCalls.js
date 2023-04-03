@@ -121,8 +121,8 @@ export const newAppointment = async (body, token) => {
             Authorization: 'Bearer ' + token
         }
     }
-    console.log(body);
-    let res = '';
-    // let res = await axios.put(`${root}/appointments`, body, config);
+    console.log(body)
+    let res = await axios.post(`${root}/appointments`, body, config);
+    console.log(res);
     return res;
 }

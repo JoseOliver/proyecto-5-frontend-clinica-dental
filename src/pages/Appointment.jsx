@@ -17,7 +17,6 @@ export const Appointment = () => {
     .then((_appointments)=>{
       if(_appointments.data.data){
         dispatch(setAppointments({appointments:_appointments.data.data}))
-        setAppointments(_appointments.data.data);
       }
     })
     .catch((error)=>console.log(error));

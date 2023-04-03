@@ -17,7 +17,6 @@ export const NewAppointment = () => {
     const [appointmentEdit, setAppointmentEdit]= useState({
         dateEdit:''
     });
-    const appointment = useSelector(appointmentData);
     const dispatch= useDispatch();
     const user = useSelector(userData);
     const navigate = useNavigate();
@@ -67,7 +66,9 @@ export const NewAppointment = () => {
                 service_id: selectedService.id,
                 doctor_id:selectedDoctor.id
             };
-            newAppointment(body, user.credenciales.token);
+            newAppointment(body, user.credenciales.token)
+            .then(res=>navigate('/user/appointments'))
+            .catch(error=> console.log(error));
         }
     }
 
