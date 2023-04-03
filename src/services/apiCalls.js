@@ -121,8 +121,17 @@ export const newAppointment = async (body, token) => {
             Authorization: 'Bearer ' + token
         }
     }
-    console.log(body)
     let res = await axios.post(`${root}/appointments`, body, config);
-    console.log(res);
+    return res;
+}
+export const deleteAppointment = async (body, token) => {
+    let config = {
+        headers: {
+            Authorization: 'Bearer ' + token
+        }
+    }
+    console.log(body)
+    let res = await axios.delete(`${root}/appointments`, body, config);
+    console.log(res)
     return res;
 }

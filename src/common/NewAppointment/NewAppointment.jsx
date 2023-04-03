@@ -19,6 +19,7 @@ export const NewAppointment = () => {
     });
     const dispatch= useDispatch();
     const user = useSelector(userData);
+    const appointment= useSelector(appointmentData);
     const navigate = useNavigate();
     const [doctors,setDoctors]= useState([]);
     const [services, setServices] =useState([]);
@@ -62,9 +63,9 @@ export const NewAppointment = () => {
     const saveAppointment = () => {
         if(selectedService !== '' && selectedDoctor!== ''){
             let body={
-                // date: dayjs(appointment.appointment.date).format('YYYY-MM-DDThh:mm'),
+                date: dayjs(appointment.appointment.date).format('YYYY-MM-DDThh:mm:00Z'),
                 service_id: selectedService.id,
-                doctor_id:selectedDoctor.id
+                doctor_id:selectedDoctor.doctor_id
             };
             newAppointment(body, user.credenciales.token)
             .then(res=>navigate('/user/appointments'))

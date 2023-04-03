@@ -35,6 +35,10 @@ div{
 .appointment{
   width:300px;
   border: 2px solid grey;
+  justify-content: center;
+  display: flex;
+  flex-direction: column;
+  padding:10px !important;
 }
 .appointments{
   display:flex;
@@ -44,4 +48,10 @@ div{
 input{
   width:200px;
   height:35px;
+}
+.centrado{
+  display:flex;
+  justify-content: center;
+  margin:10px !important;
+  gap: 10px;
 }

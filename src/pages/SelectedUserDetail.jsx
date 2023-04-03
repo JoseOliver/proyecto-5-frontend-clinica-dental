@@ -19,7 +19,7 @@ export const SelectedUserDetail = () => {
         <div className='margin'>
             <Button onClick={()=>{
                 dispatch(addSelected({selected:[]}));
-                navigate(-1);
+                navigate('/medic');
             }}>Atras</Button>
             <div className='me'>
                 <div className="user-elem"><div className="label">Nombre: </div><input type="text" value={users.selected.name} readOnly/></div>

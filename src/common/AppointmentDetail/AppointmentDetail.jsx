@@ -10,9 +10,7 @@ export const AppointmentDetail = () => {
   const appointments = useSelector(appointmentsData);
   const user = useSelector(userData);
   const dispatch = useDispatch();
-  const [nombreCita, setNombreCita]= useState(appointments.selected.id +' - ' + appointments.selected.Service.name);
-  const [medic,setMedic] = useState(appointments.selected.Doctor);
-  const [service, setService] = useState(appointments.selected.Service);
+  const [nombreCita, setNombreCita]= useState('');
 
   const [appointmentError, setappointmentError]= useState({
     dateError:'',
@@ -26,9 +24,16 @@ export const AppointmentDetail = () => {
   })
   const navigate = useNavigate();
   useEffect(()=>{
-    if(appointments.selected === {})navigate('/user/appointments');
+    if(appointments.selected === '')navigate('/user/appointments');
     if(user.credenciales.token === undefined)navigate('/auth/login');
+    setNombreCita(appointments.selected.id +' - ' + appointments.selected.Service.name);
   },[])
+  useEffect(()=>{
+    if(user.credenciales.token === undefined)navigate('/auth/login');
+  },[user])
+  useEffect(()=>{
+    if(appointments.selected === undefined)navigate('/user/appointments');
+  },[appointments])
 
   return (
     <div>
@@ -45,13 +50,12 @@ export const AppointmentDetail = () => {
           
         <div className="servicio">
           <h3>Servicio</h3>
-          <div className='elem'><div className="label">clase: </div><input type="text" defaultValue={service.name} readOnly/></div>
-          <div className='elem'><div className="label">Precio: </div><input type="text" defaultValue={service.price} readOnly/>€</div>
+          <div className='elem'><div className="label">clase: </div><input type="text" defaultValue={appointments.selected.Service.name} readOnly/></div>
+          <div className='elem'><div className="label">Precio: </div><input type="text" defaultValue={appointments.selected.Service.price} readOnly/>€</div>
         </div>
         <div className="medico">
           <h3>Médico</h3>
-          <div className='elem'><div className="label">nombre: </div><input type="text" defaultValue={medic.User.name + ' ' + medic.User.first_surname} readOnly/></div>
-          
+          <div className='elem'><div className="label">nombre: </div><input type="text" defaultValue={appointments.selected.Doctor.User.name + ' ' + appointments.selected.Doctor.User.first_surname} readOnly/></div>
         </div>
     </div>
   )
