@@ -45,20 +45,20 @@ export const NewAppointment = () => {
                 })
                 .catch(error=> console.log (error));
             }
-    },[])
+    },[]);
 
     const handleServiceSelection = (selected) => {
         const selectedValue=selected.target.options[selected.target.selectedIndex].value;
         const selectedService = services.find(item => item.id == selectedValue);
-        if(selected.target.selectedIndex===0)setSelectedService('')
+        if(selected.target.selectedIndex===0)setSelectedService('');
         else setSelectedService(selectedService);
-    }
+    };
     const handleDoctorSelection = (selected) => {
         const selectedValue=selected.target.options[selected.target.selectedIndex].value;
         const selectedDoctor = doctors.find(item => item.id == selectedValue);
         if(selected.target.selectedIndex===0)setSelectedDoctor('')
         else setSelectedDoctor(selectedDoctor);
-    }
+    };
 
     const saveAppointment = () => {
         if(selectedService !== '' && selectedDoctor!== ''){
@@ -71,7 +71,7 @@ export const NewAppointment = () => {
             .then(res=>navigate('/user/appointments'))
             .catch(error=> console.log(error));
         }
-    }
+    };
 
     return (
         <>
@@ -104,5 +104,5 @@ export const NewAppointment = () => {
                 <Button onClick={()=>saveAppointment()}>Guarda</Button>{appointmentError.totalError}
             </div>
         </>
-    )
+    );
 }

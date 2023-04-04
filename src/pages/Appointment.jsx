@@ -11,6 +11,7 @@ export const Appointment = () => {
   const dispatch = useDispatch();
   const user = useSelector(userData);
   const navigate = useNavigate();
+
   useEffect(()=>{
     if(user.credenciales.token === undefined)navigate('/auth/login');
     getAppointments(user.credenciales.token)
@@ -18,9 +19,10 @@ export const Appointment = () => {
       if(_appointments.data.data){
         dispatch(setAppointments({appointments:_appointments.data.data}))
       }
-    },[appointments])
+    })
     .catch((error)=>console.log(error));
-  },[])
+  },[appointments]);
+
   const click= (_appointment)=>{
     dispatch(addSelected({selected:_appointment}));
     navigate('/user/appointments/detail');

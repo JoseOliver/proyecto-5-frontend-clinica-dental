@@ -125,16 +125,10 @@ export const newAppointment = async (body, token) => {
     return res;
 }
 export const deleteAppointment = async (body, token) => {
-    let config = {
-        headers: {
-            Authorization: 'Bearer ' + token
-        }
-    };
-    let sentBody = {
-        id:body.id.toString()
-    };
-    console.log(sentBody)
-    let res = await axios.delete(`${root}/appointments`, sentBody, config);
-    console.log(res)
+
+    let res = await axios.delete(`${root}/appointments`, {
+        headers: {Authorization: `Bearer ${token}`},
+        data: body
+    });
     return res;
 }
