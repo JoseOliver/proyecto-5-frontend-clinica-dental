@@ -18,7 +18,7 @@ export const Appointment = () => {
       if(_appointments.data.data){
         dispatch(setAppointments({appointments:_appointments.data.data}))
       }
-    })
+    },[appointments])
     .catch((error)=>console.log(error));
   },[])
   const click= (_appointment)=>{
@@ -26,7 +26,7 @@ export const Appointment = () => {
     navigate('/user/appointments/detail');
   }
   return (
-    <>
+    <div className='citas-container'>
       <h2>Citas</h2>
       <Button onClick={()=>navigate('/user/appointments/new')}>Nueva cita</Button>
       <div className='appointments'>
@@ -51,6 +51,6 @@ export const Appointment = () => {
           )
         }
       </div>
-    </>
+    </div>
   )
 }

@@ -1,14 +1,14 @@
 .nav-elem{
-    background-color: grey;
-    color:beige;
-    border-radius: 1em;
+    background-color: aliceblue;
+    border-radius: 10px;
     border: 0.1em solid darkblue;
     cursor: pointer;
     transition: 0.3s;
-    padding: 5px !important;
+    padding: 10px !important;
     min-width: 100px;
     text-align: center;
-    margin: 5px !important;
+    margin: 10px !important;
+    width:150px;
 }
 .logo{
     display:flex;
@@ -20,7 +20,7 @@
     margin-left: 15px;
 }
 .nav-elem:hover{
-    background-color: beige;
-    color:grey;
+    background-color: gray;
+    color:aliceblue;
     transition: 0.3s;
 }

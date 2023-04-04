@@ -1,9 +1,10 @@
 body {
-  background-color: beige;
+  background-color: #fafafa;
 }
 div{
   padding: 0 !important;
   margin: 0 !important;
+  
 }
 .offcanvas{
   width:200px !important;
@@ -39,11 +40,16 @@ div{
   display: flex;
   flex-direction: column;
   padding:10px !important;
+  background-color: antiquewhite;
+  border-radius:10px;
+  box-shadow: 10px 10px 22px 0px rgba(0,0,0,0.75);
 }
 .appointments{
   display:flex;
   justify-content: space-evenly;
   flex-wrap: wrap;
+  gap:10px;
+  margin: 10px !important;
 }
 input{
   width:200px;
@@ -54,4 +60,8 @@ input{
   justify-content: center;
   margin:10px !important;
   gap: 10px;
+}
+.citas-container{
+margin: 10px !important;
+padding: 10px !important;
 }

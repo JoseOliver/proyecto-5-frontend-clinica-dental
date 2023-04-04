@@ -129,9 +129,12 @@ export const deleteAppointment = async (body, token) => {
         headers: {
             Authorization: 'Bearer ' + token
         }
-    }
-    console.log(body)
-    let res = await axios.delete(`${root}/appointments`, body, config);
+    };
+    let sentBody = {
+        id:body.id.toString()
+    };
+    console.log(sentBody)
+    let res = await axios.delete(`${root}/appointments`, sentBody, config);
     console.log(res)
     return res;
 }
