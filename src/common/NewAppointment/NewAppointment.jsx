@@ -62,8 +62,9 @@ export const NewAppointment = () => {
 
     const saveAppointment = () => {
         if(selectedService !== '' && selectedDoctor!== ''){
+
             let body={
-                date: dayjs(appointment.appointment.date).format('YYYY-MM-DDThh:mm:00Z'),
+                date: dayjs(appointment.appointment.date).format('YYYY-MM-DDThh:mm:00'),
                 service_id: selectedService.id,
                 doctor_id:selectedDoctor.doctor_id
             };

@@ -15,8 +15,7 @@ export const NavBar = (showMenu) => {
   const navigate= useNavigate();
 
   return (
-    <Navbar bg="light" expand="md">
-      <Container>
+    <Navbar bg="light">
         <Navbar.Brand>
           <Nav.Link><NavElem className='app-title' type='principal' ruta='' destino='/'></NavElem></Nav.Link>
         </Navbar.Brand>
@@ -36,7 +35,6 @@ export const NavBar = (showMenu) => {
               <Menu/>
             </Button>
           </div>
-      </Container>
     </Navbar>
   )
 }

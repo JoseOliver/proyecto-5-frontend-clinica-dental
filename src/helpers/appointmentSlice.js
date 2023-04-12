@@ -1,9 +1,10 @@
 import { createSlice } from '@reduxjs/toolkit';
+import * as dayjs from 'dayjs'
 
 export const appointmentSlice = createSlice({
     name:'appointment',
     initialState:{
-        appointment: [],
+        appointment: {date:dayjs().format('YYYY-MM-DDThh:mm')},
     },
     reducers: {
         setNewAppointment: (state, action) => {

@@ -11,8 +11,7 @@ import * as dayjs from 'dayjs'
 import { appointmentData, setNewAppointment } from '../../helpers/appointmentSlice';
 
 export const EditableInput = ({name, type, validateFunc, editFunc, data}) => {
-
-    const user= useSelector(userData);
+    const user = useSelector(userData);
     const select = useSelector(data);
     const [tempData, setTempData] = useState('');
     let contenedor
@@ -35,7 +34,7 @@ export const EditableInput = ({name, type, validateFunc, editFunc, data}) => {
 
     useEffect(()=>{
         if(value==='')setValue(select[contenedor][name]);
-    });
+    },[]);
 
     const inputHandler =(elem)=>{ 
         setValue(elem.target.value);
@@ -52,6 +51,23 @@ export const EditableInput = ({name, type, validateFunc, editFunc, data}) => {
             }));
     }
     const saveInput = (elem) =>{
+        if(data === userData){
+            let body = {
+                changes:{
+                    [name]:value
+                }
+            };
+            pushFunc(body, user.credenciales.token)
+            .then((res)=>{
+                let user ={
+                    ...select.credenciales,
+                    [name]:value
+                };
+                setValue(user[name]);
+                dispatch(update({credenciales:user}));
+            })
+            .catch((error)=>console.log(error));
+        }
         if(data===appointmentsData && name==='date'){
             let body = {
                 id:select.selected.id,
@@ -62,9 +78,7 @@ export const EditableInput = ({name, type, validateFunc, editFunc, data}) => {
             body.changes.date=dayjs(body.changes.date).format('YYYY-MM-DD hh:mm:ss');
             pushFunc(body, user.credenciales.token)
             .then((res)=>{
-                if(data === userData)dispatch(update({[name]:value}));
                 if(data === appointmentsData)dispatch(setAppointments({[name]:value}));
-                
             })
             .catch((error)=>{console.log(error)});
             editFunc(
@@ -72,54 +86,53 @@ export const EditableInput = ({name, type, validateFunc, editFunc, data}) => {
                     ...prevState, 
                     [name+'Edit']:false
                 })
-                );
-            }
-            if(data ===appointmentData && name==='date'){
-                editFunc(
-                    (prevState)=>({
-                        ...prevState, 
-                        [name+'Edit']:false
-                    })
-                    );
-            }
-            if(error === ''){
-                elem.target.readOnly=true;
-                setEditStatus(true);
-            }
+            );
         }
-            return (
-                <div className='editableInput'>
+        if(data ===appointmentData && name==='date'){
+            editFunc(
+                (prevState)=>({
+                    ...prevState, 
+                    [name+'Edit']:false
+                })
+                );
+        }
+        if(error === ''){
+            elem.target.readOnly=true;
+            setEditStatus(true);
+        }
+    }
+    return (
+        <div className='editableInput'>
             <input type={type} name={name} value={value} onChange={(elem)=>{inputHandler(elem)}} onBlur={(elem)=>{errorHandler(elem)}} readOnly={editStatus}/>
             {
-                editStatus?
-                (
-                    <Button variant="info" onClick={(elem)=>{
-                        setEditStatus(false);
-                        editFunc(
-                            (prevState)=>({
-                                ...prevState, 
-                                [name+'Edit']:true
-                            })
-                        );
-                        setTempData(value);
-                    }}>
-                        Edita
+            editStatus?
+            (
+                <Button variant="info" onClick={(elem)=>{
+                    setEditStatus(false);
+                    editFunc(
+                        (prevState)=>({
+                            ...prevState, 
+                            [name+'Edit']:true
+                        })
+                    );
+                    setTempData(value);
+                }}>
+                    Edita
+                </Button>
+            ):(
+                <>
+                    <Button variant="success" onClick={(elem)=>saveInput(elem)}>
+                        Guarda
                     </Button>
-                ):(
-                    <>
-                        <Button variant="success" onClick={(elem)=>saveInput(elem)}>
-                            Guarda
-                        </Button>
-                        <Button variant="danger" onClick={(elem)=>{
-                            setValue(tempData);
-                            setError('');
-                            setEditStatus(true);
-                        }}>
-                            Cancela
-                        </Button>
-                    </>
-                )
-            }
+                    <Button variant="danger" onClick={(elem)=>{
+                        setValue(tempData);
+                        setError('');
+                        setEditStatus(true);
+                    }}>
+                        Cancela
+                    </Button>
+                </>
+            )}
             {
                 error !== '' && (<div className='error'>{error}</div>)
             }

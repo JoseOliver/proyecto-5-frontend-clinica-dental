@@ -88,38 +88,41 @@ export const Login = () => {
     }
 
     return (
-        <Container fluid className='login'>
-            <Row>
-                <Col>
-                    {
-                    !user.credenciales.token ?
-                    (
-                        <div>
-                            <p>Login</p>
-                            <InputText
-                                type="email"
-                                name="email" // linea de bindeo con el hook
-                                placeholder="Email"
-                                setFunc= {setCredenciales}
-                                validateFunc= {setCredencialesError}
-                            ></InputText>
-                            <InputText
-                                type="password"
-                                name="password"
-                                placeholder="Pass"
-                                setFunc={setCredenciales}
-                                validateFunc= {setCredencialesError}
-                            ></InputText>
-                            <button className='logButton' onClick={()=>{loginFunc()}}>Login</button>
-                            {credencialesError.totalError}
-                        </div>
-                    ):(
-                        <>
-                            <div>{welcome}</div>
-                        </>
-                    )}
-                </Col>
-            </Row>
-        </Container>
+            <div className='bg bg-login' style={{backgroundImage: `url('../src/assets/clinica_login.jpg')`}}>
+
+                <Container fluid className='login'>
+                    <Row>
+                        <Col>
+                            {
+                            !user.credenciales.token ?
+                            (
+                                <div>
+                                    <h2>Login</h2>
+                                    <InputText
+                                        type="email"
+                                        name="email" // linea de bindeo con el hook
+                                        placeholder="Email"
+                                        setFunc= {setCredenciales}
+                                        validateFunc= {setCredencialesError}
+                                    ></InputText>
+                                    <InputText
+                                        type="password"
+                                        name="password"
+                                        placeholder="Pass"
+                                        setFunc={setCredenciales}
+                                        validateFunc= {setCredencialesError}
+                                    ></InputText>
+                                    <button className='logButton' onClick={()=>{loginFunc()}}>Login</button>
+                                    {credencialesError.totalError}
+                                </div>
+                            ):(
+                                <>
+                                    <div>{welcome}</div>
+                                </>
+                            )}
+                        </Col>
+                    </Row>
+                </Container>
+            </div>
     )
 }

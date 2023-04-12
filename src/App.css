@@ -1,10 +1,21 @@
 body {
   background-color: #fafafa;
+  min-width:430px;
 }
 div{
   padding: 0 !important;
   margin: 0 !important;
   
+}
+.bg{
+
+  height:100vh;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+.index{
+  background-position: 40% 50%;
 }
 .offcanvas{
   width:200px !important;
@@ -24,6 +35,11 @@ div{
 .user{
   width:300px;
   border: 2px solid grey;
+  background-color: antiquewhite;
+  border-radius:10px;
+  box-shadow: 10px 10px 22px 0px rgba(0,0,0,0.75);
+  margin: 10px !important;
+  padding: 10px !important;
 }
 .users{
   display:flex;

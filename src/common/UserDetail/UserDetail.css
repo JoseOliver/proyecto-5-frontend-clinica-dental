@@ -18,9 +18,14 @@
 
 .label{
     width:100px;
+    background-color: whitesmoke;
+    border-radius: 10px;
 }
 .me{
     display:flex;
     flex-direction: column;
     gap:5px;
+    border-radius: 10px;
+    margin: 10px !important;
+    padding: 10px !important;
 }

@@ -41,10 +41,10 @@ export const Register = () => {
   }
 
   return (
-    <>
+    <div className='bg bg-register' style={{backgroundImage: `url('../src/assets/clinica_register.jpg')`}}>
       {mensaje === '' ?(
         <div className='register'>
-          <p>Register</p>
+          <h2>Register</h2>
           <InputText
               type="text"
               placeholder="Nombre"
@@ -81,7 +81,7 @@ export const Register = () => {
               setFunc={setRegistro}
               validateFunc={setRegistroError}
           ></InputText>
-          <DropdownBtn 
+          {/* <DropdownBtn 
             setFunc={setRol} 
             options={options} 
             title={'¿Paciente o doctor?'}>
@@ -95,7 +95,7 @@ export const Register = () => {
             rol==='medico' && (
               <div>Cosas de medico</div>
             )
-          }
+          } */}
           <InputText
               type="email"
               name="email" // linea de bindeo con el hook
@@ -115,6 +115,6 @@ export const Register = () => {
       ):(
         <div>{mensaje}</div>
       )}
-    </>
+    </div>
   )
 }
